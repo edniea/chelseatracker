@@ -18,7 +18,7 @@ The goal is to create a clean, easy-to-navigate platform that displays stats, sc
 - Compare stats between Chelsea players and players from other teams  
 - Create **graphs and diagrams** to visualize player performance  
 - Display **player and staff profiles** with photos and biographical info  
-- 🗺Show a **map of stadiums** where Chelsea will play  
+- Show a **map of stadiums** where Chelsea will play  
 - View the **Chelsea match schedule**  
 - Home page with **team rankings, stat leaders, and league comparisons**  
 
@@ -27,10 +27,8 @@ The goal is to create a clean, easy-to-navigate platform that displays stats, sc
 ## Team Members
 
 **Alex Ednie**  
-📧 edniea@rpi.edu  
-🎓 4 credits  
-
-
+ edniea 
+ edniea@rpi.edu   
 
 ---
 
