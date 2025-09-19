@@ -27,7 +27,6 @@ The goal is to create a clean, easy-to-navigate platform that displays stats, sc
 ## Team Members
 
 **Alex Ednie**  
- edniea 
  edniea@rpi.edu   
 
 ---
