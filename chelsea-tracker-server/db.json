@@ -1,0 +1,112 @@
+{
+  "players": [
+    {
+      "id": 1,
+      "name": "Cole Palmer",
+      "position": "Midfielder",
+      "number": 20,
+      "nationality": "England",
+      "age": 22,
+      "height": "185 cm",
+      "weight": "70 kg",
+      "photo": "",
+      "stats": {
+        "goals": 0,
+        "assists": 0,
+        "appearances": 0,
+        "yellowCards": 0,
+        "redCards": 0
+      },
+      "bio": "Attacking midfielder known for his creativity and goal-scoring ability."
+    },
+    {
+      "id": 2,
+      "name": "Enzo Fernández",
+      "position": "Midfielder",
+      "number": 8,
+      "nationality": "Argentina",
+      "age": 23,
+      "height": "178 cm",
+      "weight": "75 kg",
+      "photo": "",
+      "stats": {
+        "goals": 0,
+        "assists": 0,
+        "appearances": 0,
+        "yellowCards": 0,
+        "redCards": 0
+      },
+      "bio": "World Cup winner and creative midfielder with excellent passing range."
+    },
+    {
+      "id": 3,
+      "name": "Reece James",
+      "position": "Defender",
+      "number": 24,
+      "nationality": "England",
+      "age": 24,
+      "height": "182 cm",
+      "weight": "80 kg",
+      "photo": "",
+      "stats": {
+        "goals": 0,
+        "assists": 0,
+        "appearances": 0,
+        "yellowCards": 0,
+        "redCards": 0
+      },
+      "bio": "Club captain and dynamic right-back known for his attacking prowess."
+    }
+  ],
+  "matches": [
+    {
+      "id": 1,
+      "date": "2024-08-17",
+      "time": "15:00",
+      "homeTeam": "Chelsea",
+      "awayTeam": "Manchester City",
+      "venue": "Stamford Bridge",
+      "competition": "Premier League",
+      "status": "scheduled",
+      "score": null
+    }
+  ],
+  "leagues": [
+    {
+      "id": 1,
+      "name": "Premier League",
+      "country": "England",
+      "season": "2024-25",
+      "currentPosition": 0,
+      "points": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0
+    }
+  ],
+  "staff": [
+    {
+      "id": 1,
+      "name": "Mauricio Pochettino",
+      "role": "Head Coach",
+      "nationality": "Argentina",
+      "photo": "",
+      "bio": "Experienced manager with a focus on attacking football."
+    }
+  ],
+  "stadiums": [
+    {
+      "id": 1,
+      "name": "Stamford Bridge",
+      "city": "London",
+      "country": "England",
+      "capacity": 40341,
+      "address": "Fulham Road, London, SW6 1HS",
+      "coordinates": {
+        "lat": 51.4817,
+        "lng": -0.1910
+      }
+    }
+  ]
+}
+
