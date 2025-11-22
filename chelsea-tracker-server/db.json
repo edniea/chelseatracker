@@ -9,15 +9,18 @@
       "age": 22,
       "height": "185 cm",
       "weight": "70 kg",
-      "photo": "",
+      "photo": "https://example.com/photos/palmer.jpg",
       "stats": {
-        "goals": 0,
-        "assists": 0,
-        "appearances": 0,
-        "yellowCards": 0,
-        "redCards": 0
+        "goals": 12,
+        "assists": 8,
+        "appearances": 28,
+        "yellowCards": 3,
+        "redCards": 0,
+        "minutesPlayed": 2240
       },
-      "bio": "Attacking midfielder known for his creativity and goal-scoring ability."
+      "bio": "Attacking midfielder known for his creativity and goal-scoring ability. Joined Chelsea from Manchester City in 2023.",
+      "joinedDate": "2023-09-01",
+      "contractExpiry": "2030-06-30"
     },
     {
       "id": 2,
@@ -28,15 +31,18 @@
       "age": 23,
       "height": "178 cm",
       "weight": "75 kg",
-      "photo": "",
+      "photo": "https://example.com/photos/fernandez.jpg",
       "stats": {
-        "goals": 0,
-        "assists": 0,
-        "appearances": 0,
-        "yellowCards": 0,
-        "redCards": 0
+        "goals": 3,
+        "assists": 5,
+        "appearances": 32,
+        "yellowCards": 7,
+        "redCards": 0,
+        "minutesPlayed": 2560
       },
-      "bio": "World Cup winner and creative midfielder with excellent passing range."
+      "bio": "World Cup winner and creative midfielder with excellent passing range. Record signing from Benfica in 2023.",
+      "joinedDate": "2023-01-31",
+      "contractExpiry": "2031-06-30"
     },
     {
       "id": 3,
@@ -47,15 +53,128 @@
       "age": 24,
       "height": "182 cm",
       "weight": "80 kg",
-      "photo": "",
+      "photo": "https://example.com/photos/james.jpg",
       "stats": {
-        "goals": 0,
-        "assists": 0,
-        "appearances": 0,
-        "yellowCards": 0,
-        "redCards": 0
+        "goals": 2,
+        "assists": 4,
+        "appearances": 18,
+        "yellowCards": 2,
+        "redCards": 0,
+        "minutesPlayed": 1440
       },
-      "bio": "Club captain and dynamic right-back known for his attacking prowess."
+      "bio": "Club captain and dynamic right-back known for his attacking prowess. Academy graduate.",
+      "joinedDate": "2018-07-01",
+      "contractExpiry": "2028-06-30"
+    },
+    {
+      "id": 4,
+      "name": "Nicolas Jackson",
+      "position": "Forward",
+      "number": 15,
+      "nationality": "Senegal",
+      "age": 23,
+      "height": "186 cm",
+      "weight": "78 kg",
+      "photo": "https://example.com/photos/jackson.jpg",
+      "stats": {
+        "goals": 14,
+        "assists": 3,
+        "appearances": 30,
+        "yellowCards": 5,
+        "redCards": 0,
+        "minutesPlayed": 2400
+      },
+      "bio": "Pacy striker with excellent finishing ability. Signed from Villarreal in 2023.",
+      "joinedDate": "2023-07-01",
+      "contractExpiry": "2031-06-30"
+    },
+    {
+      "id": 5,
+      "name": "Moises Caicedo",
+      "position": "Midfielder",
+      "number": 25,
+      "nationality": "Ecuador",
+      "age": 22,
+      "height": "178 cm",
+      "weight": "73 kg",
+      "photo": "https://example.com/photos/caicedo.jpg",
+      "stats": {
+        "goals": 1,
+        "assists": 2,
+        "appearances": 29,
+        "yellowCards": 8,
+        "redCards": 0,
+        "minutesPlayed": 2320
+      },
+      "bio": "Defensive midfielder with excellent ball-winning abilities. Record signing from Brighton in 2023.",
+      "joinedDate": "2023-08-14",
+      "contractExpiry": "2031-06-30"
+    },
+    {
+      "id": 6,
+      "name": "Conor Gallagher",
+      "position": "Midfielder",
+      "number": 23,
+      "nationality": "England",
+      "age": 24,
+      "height": "182 cm",
+      "weight": "75 kg",
+      "photo": "https://example.com/photos/gallagher.jpg",
+      "stats": {
+        "goals": 5,
+        "assists": 6,
+        "appearances": 35,
+        "yellowCards": 6,
+        "redCards": 0,
+        "minutesPlayed": 2800
+      },
+      "bio": "Energetic box-to-box midfielder. Academy graduate who has become a key player.",
+      "joinedDate": "2019-07-01",
+      "contractExpiry": "2025-06-30"
+    },
+    {
+      "id": 7,
+      "name": "Levi Colwill",
+      "position": "Defender",
+      "number": 26,
+      "nationality": "England",
+      "age": 21,
+      "height": "187 cm",
+      "weight": "82 kg",
+      "photo": "https://example.com/photos/colwill.jpg",
+      "stats": {
+        "goals": 1,
+        "assists": 1,
+        "appearances": 27,
+        "yellowCards": 4,
+        "redCards": 0,
+        "minutesPlayed": 2160
+      },
+      "bio": "Promising young center-back with excellent ball-playing ability. Academy graduate.",
+      "joinedDate": "2021-07-01",
+      "contractExpiry": "2029-06-30"
+    },
+    {
+      "id": 8,
+      "name": "Mykhailo Mudryk",
+      "position": "Forward",
+      "number": 10,
+      "nationality": "Ukraine",
+      "age": 23,
+      "height": "175 cm",
+      "weight": "70 kg",
+      "photo": "https://example.com/photos/mudryk.jpg",
+      "stats": {
+        "goals": 6,
+        "assists": 4,
+        "appearances": 24,
+        "yellowCards": 2,
+        "redCards": 0,
+        "minutesPlayed": 1680
+      },
+      "bio": "Pacy winger with excellent dribbling skills. Signed from Shakhtar Donetsk in 2023.",
+      "joinedDate": "2023-01-15",
+      "contractExpiry": "2031-06-30"
     }
   ],
   "matches": [
@@ -68,7 +187,71 @@
       "venue": "Stamford Bridge",
       "competition": "Premier League",
       "status": "scheduled",
-      "score": null
+      "score": null,
+      "attendance": null
+    },
+    {
+      "id": 2,
+      "date": "2024-08-24",
+      "time": "17:30",
+      "homeTeam": "Wolverhampton Wanderers",
+      "awayTeam": "Chelsea",
+      "venue": "Molineux Stadium",
+      "competition": "Premier League",
+      "status": "scheduled",
+      "score": null,
+      "attendance": null
+    },
+    {
+      "id": 3,
+      "date": "2024-08-31",
+      "time": "15:00",
+      "homeTeam": "Chelsea",
+      "awayTeam": "Crystal Palace",
+      "venue": "Stamford Bridge",
+      "competition": "Premier League",
+      "status": "scheduled",
+      "score": null,
+      "attendance": null
+    },
+    {
+      "id": 4,
+      "date": "2024-09-14",
+      "time": "12:30",
+      "homeTeam": "Bournemouth",
+      "awayTeam": "Chelsea",
+      "venue": "Vitality Stadium",
+      "competition": "Premier League",
+      "status": "scheduled",
+      "score": null,
+      "attendance": null
+    },
+    {
+      "id": 5,
+      "date": "2024-09-21",
+      "time": "15:00",
+      "homeTeam": "Chelsea",
+      "awayTeam": "West Ham United",
+      "venue": "Stamford Bridge",
+      "competition": "Premier League",
+      "status": "scheduled",
+      "score": null,
+      "attendance": null
+    },
+    {
+      "id": 6,
+      "date": "2024-05-19",
+      "time": "16:00",
+      "homeTeam": "Chelsea",
+      "awayTeam": "Bournemouth",
+      "venue": "Stamford Bridge",
+      "competition": "Premier League",
+      "status": "completed",
+      "score": {
+        "home": 2,
+        "away": 1
+      },
+      "attendance": 40149
     }
   ],
   "leagues": [
@@ -77,11 +260,45 @@
       "name": "Premier League",
       "country": "England",
       "season": "2024-25",
-      "currentPosition": 0,
-      "points": 0,
-      "wins": 0,
+      "currentPosition": 6,
+      "points": 45,
+      "wins": 13,
+      "draws": 6,
+      "losses": 8,
+      "goalsFor": 48,
+      "goalsAgainst": 35,
+      "goalDifference": 13,
+      "matchesPlayed": 27
+    },
+    {
+      "id": 2,
+      "name": "FA Cup",
+      "country": "England",
+      "season": "2024-25",
+      "currentPosition": null,
+      "points": null,
+      "wins": 2,
       "draws": 0,
-      "losses": 0
+      "losses": 1,
+      "goalsFor": 6,
+      "goalsAgainst": 3,
+      "goalDifference": 3,
+      "matchesPlayed": 3
+    },
+    {
+      "id": 3,
+      "name": "EFL Cup",
+      "country": "England",
+      "season": "2024-25",
+      "currentPosition": null,
+      "points": null,
+      "wins": 1,
+      "draws": 0,
+      "losses": 1,
+      "goalsFor": 3,
+      "goalsAgainst": 2,
+      "goalDifference": 1,
+      "matchesPlayed": 2
     }
   ],
   "staff": [
@@ -90,8 +307,30 @@
       "name": "Mauricio Pochettino",
       "role": "Head Coach",
       "nationality": "Argentina",
-      "photo": "",
-      "bio": "Experienced manager with a focus on attacking football."
+      "photo": "https://example.com/photos/pochettino.jpg",
+      "bio": "Experienced manager with a focus on attacking football. Previously managed Tottenham, PSG, and Southampton.",
+      "joinedDate": "2023-07-01",
+      "contractExpiry": "2026-06-30"
+    },
+    {
+      "id": 2,
+      "name": "Jesús Pérez",
+      "role": "Assistant Coach",
+      "nationality": "Spain",
+      "photo": "https://example.com/photos/perez.jpg",
+      "bio": "Long-time assistant to Pochettino, known for tactical analysis and training methods.",
+      "joinedDate": "2023-07-01",
+      "contractExpiry": "2026-06-30"
+    },
+    {
+      "id": 3,
+      "name": "Miguel d'Agostino",
+      "role": "Assistant Coach",
+      "nationality": "Argentina",
+      "photo": "https://example.com/photos/dagostino.jpg",
+      "bio": "Assistant coach specializing in defensive organization and set pieces.",
+      "joinedDate": "2023-07-01",
+      "contractExpiry": "2026-06-30"
     }
   ],
   "stadiums": [
@@ -105,8 +344,40 @@
       "coordinates": {
         "lat": 51.4817,
         "lng": -0.1910
-      }
+      },
+      "opened": "1877",
+      "surface": "Grass",
+      "owner": "Chelsea Pitch Owners"
+    },
+    {
+      "id": 2,
+      "name": "Wembley Stadium",
+      "city": "London",
+      "country": "England",
+      "capacity": 90000,
+      "address": "Wembley, London, HA9 0WS",
+      "coordinates": {
+        "lat": 51.5560,
+        "lng": -0.2795
+      },
+      "opened": "2007",
+      "surface": "Grass",
+      "owner": "The Football Association"
+    },
+    {
+      "id": 3,
+      "name": "Old Trafford",
+      "city": "Manchester",
+      "country": "England",
+      "capacity": 74310,
+      "address": "Sir Matt Busby Way, Manchester, M16 0RA",
+      "coordinates": {
+        "lat": 53.4631,
+        "lng": -2.2913
+      },
+      "opened": "1910",
+      "surface": "Grass",
+      "owner": "Manchester United"
     }
   ]
 }
-
