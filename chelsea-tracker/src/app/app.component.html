@@ -6,6 +6,13 @@
 
   <section class="cards">
     <div class="card" *ngIf="goalsLeader">
+      <img
+        *ngIf="goalsLeader?.photo"
+        class="avatar"
+        [src]="goalsLeader?.photo"
+        [alt]="goalsLeader?.name + ' photo'"
+        loading="lazy"
+      />
       <div class="label">Goals Leader</div>
       <h2>{{ goalsLeader?.name }}</h2>
       <p class="stat">
@@ -15,6 +22,13 @@
     </div>
 
     <div class="card" *ngIf="assistsLeader">
+      <img
+        *ngIf="assistsLeader?.photo"
+        class="avatar"
+        [src]="assistsLeader?.photo"
+        [alt]="assistsLeader?.name + ' photo'"
+        loading="lazy"
+      />
       <div class="label">Assists Leader</div>
       <h2>{{ assistsLeader?.name }}</h2>
       <p class="stat">

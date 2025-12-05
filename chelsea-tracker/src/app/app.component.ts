@@ -52,6 +52,7 @@ interface Player {
   name: string;
   position?: string;
   nation?: string;
+  photo?: string;
   stats?: {
     goals?: number;
     assists?: number;
