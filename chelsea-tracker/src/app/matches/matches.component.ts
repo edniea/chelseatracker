@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 interface Match {
   id: number;
@@ -32,7 +33,7 @@ interface Match {
 @Component({
   selector: 'app-matches',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FormsModule],
   templateUrl: './matches.component.html',
   styleUrl: './matches.component.css'
 })
@@ -40,8 +41,10 @@ export class MatchesComponent implements OnInit {
   private http = inject(HttpClient);
 
   matches: Match[] = [];
+  filteredMatches: Match[] = [];
   loading = true;
   error: string | null = null;
+  searchQuery: string = '';
 
   ngOnInit(): void {
     this.loadMatches();
@@ -59,6 +62,7 @@ export class MatchesComponent implements OnInit {
           const dateB = new Date(b.date).getTime();
           return dateB - dateA;
         });
+        this.filteredMatches = [...this.matches];
         this.loading = false;
       },
       error: (err) => {
@@ -114,6 +118,40 @@ export class MatchesComponent implements OnInit {
       day: 'numeric', 
       year: 'numeric' 
     });
+  }
+
+  onSearchChange(query: string): void {
+    this.searchQuery = query;
+    this.filterMatches();
+  }
+
+  filterMatches(): void {
+    if (!this.searchQuery.trim()) {
+      this.filteredMatches = [...this.matches];
+      return;
+    }
+
+    const query = this.searchQuery.toLowerCase().trim();
+    this.filteredMatches = this.matches.filter(match => {
+      const opponent = this.getOpponent(match).toLowerCase();
+      const competition = match.competition.toLowerCase();
+      const round = match.round?.toLowerCase() || '';
+      const date = this.formatDate(match.date).toLowerCase();
+      const referee = match.referee?.toLowerCase() || '';
+      const venue = match.venue?.toLowerCase() || '';
+
+      return opponent.includes(query) ||
+             competition.includes(query) ||
+             round.includes(query) ||
+             date.includes(query) ||
+             referee.includes(query) ||
+             venue.includes(query);
+    });
+  }
+
+  clearSearch(): void {
+    this.searchQuery = '';
+    this.filterMatches();
   }
 }
 

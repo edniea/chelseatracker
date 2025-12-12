@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 interface Player {
   id: number;
@@ -21,7 +22,7 @@ interface Player {
 @Component({
   selector: 'app-players',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FormsModule],
   templateUrl: './players.component.html',
   styleUrl: './players.component.css'
 })
@@ -29,8 +30,10 @@ export class PlayersComponent implements OnInit {
   private http = inject(HttpClient);
 
   players: Player[] = [];
+  filteredPlayers: Player[] = [];
   loading = true;
   error: string | null = null;
+  searchQuery: string = '';
 
   ngOnInit(): void {
     this.loadPlayers();
@@ -50,6 +53,7 @@ export class PlayersComponent implements OnInit {
             const bTotal = (b.stats?.goals ?? 0) + (b.stats?.assists ?? 0);
             return bTotal - aTotal;
           });
+        this.filteredPlayers = [...this.players];
         this.loading = false;
       },
       error: (err) => {
@@ -58,6 +62,34 @@ export class PlayersComponent implements OnInit {
         this.loading = false;
       }
     });
+  }
+
+  onSearchChange(query: string): void {
+    this.searchQuery = query;
+    this.filterPlayers();
+  }
+
+  filterPlayers(): void {
+    if (!this.searchQuery.trim()) {
+      this.filteredPlayers = [...this.players];
+      return;
+    }
+
+    const query = this.searchQuery.toLowerCase().trim();
+    this.filteredPlayers = this.players.filter(player => {
+      const name = player.name.toLowerCase();
+      const position = player.position?.toLowerCase() || '';
+      const nation = player.nation?.toLowerCase() || '';
+
+      return name.includes(query) ||
+             position.includes(query) ||
+             nation.includes(query);
+    });
+  }
+
+  clearSearch(): void {
+    this.searchQuery = '';
+    this.filterPlayers();
   }
 }
 
