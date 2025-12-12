@@ -1,0 +1,44 @@
+<div class="page">
+  <header class="hero">
+    <h1>Chelsea Tracker</h1>
+    <p>Current leaders for goals and assists</p>
+  </header>
+
+  <section class="cards">
+    <div class="card" *ngIf="goalsLeader">
+      <img
+        *ngIf="goalsLeader?.photo"
+        class="avatar"
+        [src]="goalsLeader?.photo"
+        [alt]="goalsLeader?.name + ' photo'"
+        loading="lazy"
+      />
+      <div class="label">Goals Leader</div>
+      <h2>{{ goalsLeader?.name }}</h2>
+      <p class="stat">
+        {{ goalsLeader?.stats?.goals ?? 0 }} goals
+        <span class="muted">({{ goalsLeader?.position || 'N/A' }})</span>
+      </p>
+    </div>
+
+    <div class="card" *ngIf="assistsLeader">
+      <img
+        *ngIf="assistsLeader?.photo"
+        class="avatar"
+        [src]="assistsLeader?.photo"
+        [alt]="assistsLeader?.name + ' photo'"
+        loading="lazy"
+      />
+      <div class="label">Assists Leader</div>
+      <h2>{{ assistsLeader?.name }}</h2>
+      <p class="stat">
+        {{ assistsLeader?.stats?.assists ?? 0 }} assists
+        <span class="muted">({{ assistsLeader?.position || 'N/A' }})</span>
+      </p>
+    </div>
+  </section>
+
+  <div class="status" *ngIf="loading">Loading leaders...</div>
+  <div class="status error" *ngIf="error">{{ error }}</div>
+</div>
+

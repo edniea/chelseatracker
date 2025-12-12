@@ -1,0 +1,43 @@
+<div class="players-page">
+  <header class="header">
+    <h1>Chelsea Players</h1>
+    <p>All players with goals, assists, and matches played</p>
+  </header>
+
+  <div class="loading" *ngIf="loading">Loading players...</div>
+  <div class="error" *ngIf="error">{{ error }}</div>
+
+  <div class="players-container" *ngIf="!loading && !error">
+    <table class="players-table">
+      <thead>
+        <tr>
+          <th>Player</th>
+          <th>Position</th>
+          <th>Matches</th>
+          <th>Goals</th>
+          <th>Assists</th>
+          <th>G+A</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let player of players">
+          <td class="player-cell">
+            <img 
+              *ngIf="player.photo" 
+              [src]="player.photo" 
+              [alt]="player.name" 
+              class="player-photo"
+            >
+            <span class="player-name">{{ player.name }}</span>
+          </td>
+          <td>{{ player.position || 'N/A' }}</td>
+          <td class="stat-value">{{ player.stats?.matches ?? 0 }}</td>
+          <td class="stat-value">{{ player.stats?.goals ?? 0 }}</td>
+          <td class="stat-value">{{ player.stats?.assists ?? 0 }}</td>
+          <td class="stat-value highlight">{{ (player.stats?.goals ?? 0) + (player.stats?.assists ?? 0) }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

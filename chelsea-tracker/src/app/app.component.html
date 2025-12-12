@@ -1,43 +1,26 @@
-<div class="page">
-  <header class="hero">
-    <h1>Chelsea Tracker</h1>
-    <p>Current leaders for goals and assists</p>
+<div class="app-container">
+  <header class="banner">
+    <div class="banner-content">
+      <a routerLink="/" class="banner-logo">
+        <h1>{{ title }}</h1>
+      </a>
+      <nav class="banner-nav">
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-item">
+          <span class="nav-icon">🏠</span>
+          <span class="nav-text">Home</span>
+        </a>
+        <a routerLink="/players" routerLinkActive="active" class="nav-item">
+          <span class="nav-icon">👥</span>
+          <span class="nav-text">Players</span>
+        </a>
+        <a routerLink="/matches" routerLinkActive="active" class="nav-item">
+          <span class="nav-icon">⚽</span>
+          <span class="nav-text">Matches</span>
+        </a>
+      </nav>
+    </div>
   </header>
-
-  <section class="cards">
-    <div class="card" *ngIf="goalsLeader">
-      <img
-        *ngIf="goalsLeader?.photo"
-        class="avatar"
-        [src]="goalsLeader?.photo"
-        [alt]="goalsLeader?.name + ' photo'"
-        loading="lazy"
-      />
-      <div class="label">Goals Leader</div>
-      <h2>{{ goalsLeader?.name }}</h2>
-      <p class="stat">
-        {{ goalsLeader?.stats?.goals ?? 0 }} goals
-        <span class="muted">({{ goalsLeader?.position || 'N/A' }})</span>
-      </p>
-    </div>
-
-    <div class="card" *ngIf="assistsLeader">
-      <img
-        *ngIf="assistsLeader?.photo"
-        class="avatar"
-        [src]="assistsLeader?.photo"
-        [alt]="assistsLeader?.name + ' photo'"
-        loading="lazy"
-      />
-      <div class="label">Assists Leader</div>
-      <h2>{{ assistsLeader?.name }}</h2>
-      <p class="stat">
-        {{ assistsLeader?.stats?.assists ?? 0 }} assists
-        <span class="muted">({{ assistsLeader?.position || 'N/A' }})</span>
-      </p>
-    </div>
-  </section>
-
-  <div class="status" *ngIf="loading">Loading leaders...</div>
-  <div class="status error" *ngIf="error">{{ error }}</div>
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
 </div>

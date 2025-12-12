@@ -1,0 +1,63 @@
+<div class="matches-page">
+  <header class="header">
+    <h1>Season Matches</h1>
+    <p>All matches for the 2025-26 season</p>
+  </header>
+
+  <div class="loading" *ngIf="loading">Loading matches...</div>
+  <div class="error" *ngIf="error">{{ error }}</div>
+
+  <div class="matches-container" *ngIf="!loading && !error">
+    <table class="matches-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Competition</th>
+          <th>Opponent</th>
+          <th>Venue</th>
+          <th>Score</th>
+          <th>Result</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let match of matches" [class.played]="isPlayed(match)" [class.upcoming]="!isPlayed(match)">
+          <td class="date-cell">
+            <div class="date">{{ formatDate(match.date) }}</div>
+            <div class="time" *ngIf="match.time">{{ match.time }}</div>
+          </td>
+          <td>
+            <div class="competition">{{ match.competition }}</div>
+            <div class="round" *ngIf="match.round">{{ match.round }}</div>
+          </td>
+          <td class="opponent-cell">
+            <span class="vs">vs</span>
+            <span class="opponent-name">{{ getOpponent(match) }}</span>
+          </td>
+          <td>
+            <span class="venue-badge" [class.home]="match.venueType === 'Home'" [class.away]="match.venueType === 'Away'">
+              {{ match.venueType === 'Home' ? 'H' : 'A' }}
+            </span>
+          </td>
+          <td class="score-cell">
+            <span *ngIf="isPlayed(match)" class="score">
+              <span class="chelsea-score">{{ getChelseaScore(match) }}</span>
+              <span class="score-separator">-</span>
+              <span class="opponent-score">{{ getOpponentScore(match) }}</span>
+            </span>
+            <span *ngIf="!isPlayed(match)" class="scheduled">TBD</span>
+          </td>
+          <td class="result-cell">
+            <span *ngIf="isPlayed(match)" class="result-badge" 
+                  [class.win]="isWin(match)" 
+                  [class.draw]="isDraw(match)" 
+                  [class.loss]="isLoss(match)">
+              {{ match.result }}
+            </span>
+            <span *ngIf="!isPlayed(match)" class="scheduled-badge">Scheduled</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

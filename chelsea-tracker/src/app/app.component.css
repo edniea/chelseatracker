@@ -1,50 +1,141 @@
-:host, .page {
-    font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
-    color: #0f172a;
-    background: #f8fafc;
-    min-height: 100vh;
-    padding: 24px;
-  }
-  
-  .hero h1 { margin: 0; font-size: 28px; font-weight: 700; }
-  .hero p { margin: 4px 0 16px; color: #475569; }
-  
-  .cards {
-    display: grid;
+.app-container {
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+.banner {
+  background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.banner-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+}
+
+.banner-logo {
+  text-decoration: none;
+  color: #fff;
+  transition: opacity 0.2s ease;
+}
+
+.banner-logo:hover {
+  opacity: 0.9;
+}
+
+.banner-logo h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.banner-nav {
+  display: flex;
+  gap: 8px;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.nav-item.active {
+  background: rgba(255, 255, 255, 0.25);
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.nav-text {
+  white-space: nowrap;
+}
+
+.main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .banner-content {
+    padding: 16px 20px;
+    flex-direction: column;
     gap: 16px;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  }
-  
-  .card {
-    background: #fff;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    padding: 16px;
-    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
   }
 
-  .avatar {
-    width: 96px;
-    height: 96px;
-    border-radius: 16px;
-    object-fit: contain;      /* prevent head crop */
-    object-position: top;     /* keep faces in frame */
-    border: 2px solid #e2e8f0;
-    margin-bottom: 8px;
-    background: #f1f5f9;
-    padding: 6px;             /* letterboxing so whole head fits */
+  .banner-logo h1 {
+    font-size: 20px;
   }
-  
-  .label {
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: #0ea5e9;
-    font-weight: 700;
+
+  .banner-nav {
+    width: 100%;
+    justify-content: space-around;
+    gap: 4px;
   }
-  
-  .stat { margin: 4px 0 0; font-size: 16px; font-weight: 600; }
-  .muted { color: #64748b; font-weight: 500; margin-left: 6px; }
-  
-  .status { margin-top: 12px; color: #475569; }
-  .status.error { color: #b91c1c; }
+
+  .nav-item {
+    flex: 1;
+    justify-content: center;
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  .nav-text {
+    display: none;
+  }
+
+  .nav-icon {
+    font-size: 20px;
+  }
+
+  .main-content {
+    padding: 0 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner-content {
+    padding: 12px 16px;
+  }
+
+  .banner-logo h1 {
+    font-size: 18px;
+  }
+
+  .nav-item {
+    padding: 8px;
+  }
+}
