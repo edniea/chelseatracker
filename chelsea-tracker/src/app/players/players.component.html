@@ -20,7 +20,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let player of players">
+        <tr *ngFor="let player of players" [routerLink]="['/players', player.id]" class="clickable-row">
           <td class="player-cell">
             <img 
               *ngIf="player.photo" 

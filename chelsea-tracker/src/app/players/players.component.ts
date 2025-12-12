@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 interface Player {
   id: number;
@@ -20,7 +21,7 @@ interface Player {
 @Component({
   selector: 'app-players',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './players.component.html',
   styleUrl: './players.component.css'
 })

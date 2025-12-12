@@ -5,7 +5,7 @@
   </header>
 
   <section class="cards">
-    <div class="card" *ngIf="goalsLeader">
+    <div class="card clickable-card" *ngIf="goalsLeader" [routerLink]="['/players', goalsLeader.id]">
       <img
         *ngIf="goalsLeader?.photo"
         class="avatar"
@@ -21,7 +21,7 @@
       </p>
     </div>
 
-    <div class="card" *ngIf="assistsLeader">
+    <div class="card clickable-card" *ngIf="assistsLeader" [routerLink]="['/players', assistsLeader.id]">
       <img
         *ngIf="assistsLeader?.photo"
         class="avatar"

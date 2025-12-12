@@ -70,8 +70,12 @@
   transition: background-color 0.15s ease;
 }
 
-.players-table tbody tr:hover {
-  background: #f8fafc;
+.players-table tbody tr.clickable-row {
+  cursor: pointer;
+}
+
+.players-table tbody tr.clickable-row:hover {
+  background: #f1f5f9;
 }
 
 .players-table tbody tr:last-child {

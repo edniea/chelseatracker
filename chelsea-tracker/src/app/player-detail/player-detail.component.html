@@ -1,0 +1,184 @@
+<div class="player-detail-page">
+  <button class="back-button" (click)="goBack()">
+    <i class="fas fa-arrow-left"></i> Back to Players
+  </button>
+
+  <div class="loading" *ngIf="loading">Loading player details...</div>
+  <div class="error" *ngIf="error">{{ error }}</div>
+
+  <div class="player-detail-container" *ngIf="!loading && !error && player">
+    <!-- Player Header -->
+    <div class="player-header">
+      <div class="player-photo-container">
+        <img 
+          *ngIf="player.photo" 
+          [src]="player.photo" 
+          [alt]="player.name" 
+          class="player-photo-large"
+        >
+      </div>
+      <div class="player-info">
+        <h1 class="player-name">{{ player.name }}</h1>
+        <div class="player-meta">
+          <span class="badge position" *ngIf="player.position">{{ player.position }}</span>
+          <span class="badge nation" *ngIf="player.nation">{{ player.nation }}</span>
+          <span class="badge age" *ngIf="player.age">Age: {{ player.age }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats Sections -->
+    <div class="stats-sections" *ngIf="player.stats">
+      <!-- Playing Time -->
+      <section class="stats-section">
+        <h2 class="section-title">Playing Time</h2>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-label">Matches</div>
+            <div class="stat-value">{{ player.stats.matches ?? 0 }}</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Starts</div>
+            <div class="stat-value">{{ player.stats.starts ?? 0 }}</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Minutes</div>
+            <div class="stat-value">{{ player.stats.minutes?.toLocaleString() ?? 0 }}</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">90s</div>
+            <div class="stat-value">{{ player.stats.nineties ?? 0 }}</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Performance -->
+      <section class="stats-section">
+        <h2 class="section-title">Performance</h2>
+        <div class="stats-grid">
+          <div class="stat-card highlight">
+            <div class="stat-label">Goals</div>
+            <div class="stat-value">{{ player.stats.goals ?? 0 }}</div>
+          </div>
+          <div class="stat-card highlight">
+            <div class="stat-label">Assists</div>
+            <div class="stat-value">{{ player.stats.assists ?? 0 }}</div>
+          </div>
+          <div class="stat-card highlight">
+            <div class="stat-label">Goals + Assists</div>
+            <div class="stat-value">{{ player.stats.goalsPlusAssists ?? 0 }}</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Non-Penalty Goals</div>
+            <div class="stat-value">{{ player.stats.nonPenaltyGoals ?? 0 }}</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Penalties</div>
+            <div class="stat-value">{{ player.stats.penalties ?? 0 }}/{{ player.stats.penaltiesAttempted ?? 0 }}</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Expected Stats -->
+      <section class="stats-section" *ngIf="player.stats.xg !== undefined || player.stats.xag !== undefined">
+        <h2 class="section-title">Expected Stats</h2>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-label">xG</div>
+            <div class="stat-value">{{ player.stats.xg?.toFixed(2) ?? 0 }}</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">npxG</div>
+            <div class="stat-value">{{ player.stats.npxg?.toFixed(2) ?? 0 }}</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">xAG</div>
+            <div class="stat-value">{{ player.stats.xag?.toFixed(2) ?? 0 }}</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">npxG + xAG</div>
+            <div class="stat-value">{{ player.stats.npxgPlusXag?.toFixed(2) ?? 0 }}</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Progression -->
+      <section class="stats-section" *ngIf="player.stats.progressiveCarries !== undefined || player.stats.progressivePasses !== undefined">
+        <h2 class="section-title">Progression</h2>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-label">Progressive Carries</div>
+            <div class="stat-value">{{ player.stats.progressiveCarries ?? 0 }}</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Progressive Passes</div>
+            <div class="stat-value">{{ player.stats.progressivePasses ?? 0 }}</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Progressive Runs</div>
+            <div class="stat-value">{{ player.stats.progressiveRuns ?? 0 }}</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Discipline -->
+      <section class="stats-section">
+        <h2 class="section-title">Discipline</h2>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-label">Yellow Cards</div>
+            <div class="stat-value">{{ player.stats.yellowCards ?? 0 }}</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Red Cards</div>
+            <div class="stat-value">{{ player.stats.redCards ?? 0 }}</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Per 90 Minutes -->
+      <section class="stats-section" *ngIf="player.stats.per90">
+        <h2 class="section-title">Per 90 Minutes</h2>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-label">Goals</div>
+            <div class="stat-value">{{ player.stats.per90.goals?.toFixed(2) ?? 0 }}</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Assists</div>
+            <div class="stat-value">{{ player.stats.per90.assists?.toFixed(2) ?? 0 }}</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Goals + Assists</div>
+            <div class="stat-value">{{ player.stats.per90.goalsPlusAssists?.toFixed(2) ?? 0 }}</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Non-Penalty Goals</div>
+            <div class="stat-value">{{ player.stats.per90.nonPenaltyGoals?.toFixed(2) ?? 0 }}</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">xG</div>
+            <div class="stat-value">{{ player.stats.per90.xg?.toFixed(2) ?? 0 }}</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">xAG</div>
+            <div class="stat-value">{{ player.stats.per90.xag?.toFixed(2) ?? 0 }}</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">xG + xAG</div>
+            <div class="stat-value">{{ player.stats.per90.xgPlusXag?.toFixed(2) ?? 0 }}</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">npxG</div>
+            <div class="stat-value">{{ player.stats.per90.npxg?.toFixed(2) ?? 0 }}</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">npxG + xAG</div>
+            <div class="stat-value">{{ player.stats.per90.npxgPlusXag?.toFixed(2) ?? 0 }}</div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
