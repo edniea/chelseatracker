@@ -1,0 +1,129 @@
+<div class="comparison-page">
+  <header class="header">
+    <h1>Player Comparison</h1>
+    <p>Compare statistics between two Chelsea players</p>
+  </header>
+
+  <div class="loading" *ngIf="loading">Loading players...</div>
+  <div class="error" *ngIf="error">{{ error }}</div>
+
+  <div class="comparison-container" *ngIf="!loading && !error">
+    <!-- Player Selection -->
+    <div class="player-selection">
+      <div class="select-group">
+        <label for="player1-select">Player 1</label>
+        <select 
+          id="player1-select"
+          [(ngModel)]="player1Id" 
+          (change)="onPlayer1Change()"
+          class="player-select"
+        >
+          <option [value]="null">Select Player 1</option>
+          <option *ngFor="let player of players" [value]="player.id">
+            {{ player.name }} {{ player.position ? '(' + player.position + ')' : '' }}
+          </option>
+        </select>
+      </div>
+
+      <button class="swap-button" (click)="swapPlayers()" [disabled]="!player1 || !player2">
+        <i class="fas fa-exchange-alt"></i> Swap
+      </button>
+
+      <div class="select-group">
+        <label for="player2-select">Player 2</label>
+        <select 
+          id="player2-select"
+          [(ngModel)]="player2Id" 
+          (change)="onPlayer2Change()"
+          class="player-select"
+        >
+          <option [value]="null">Select Player 2</option>
+          <option *ngFor="let player of players" [value]="player.id">
+            {{ player.name }} {{ player.position ? '(' + player.position + ')' : '' }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Comparison Display -->
+    <div class="comparison-display" *ngIf="player1 && player2">
+      <!-- Player Headers -->
+      <div class="player-headers">
+        <div class="player-header-card">
+          <img 
+            *ngIf="player1.photo" 
+            [src]="player1.photo" 
+            [alt]="player1.name" 
+            class="player-photo"
+          >
+          <div class="player-info">
+            <h2>{{ player1.name }}</h2>
+            <div class="player-meta">
+              <span class="badge" *ngIf="player1.position">{{ player1.position }}</span>
+              <span class="badge" *ngIf="player1.nation">{{ player1.nation }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="vs-divider">
+          <span>VS</span>
+        </div>
+
+        <div class="player-header-card">
+          <img 
+            *ngIf="player2.photo" 
+            [src]="player2.photo" 
+            [alt]="player2.name" 
+            class="player-photo"
+          >
+          <div class="player-info">
+            <h2>{{ player2.name }}</h2>
+            <div class="player-meta">
+              <span class="badge" *ngIf="player2.position">{{ player2.position }}</span>
+              <span class="badge" *ngIf="player2.nation">{{ player2.nation }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Comparison Table -->
+      <div class="stats-table-container">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th class="stat-label-col">Stat</th>
+              <th class="stat-value-col">{{ player1.name }}</th>
+              <th class="stat-value-col">{{ player2.name }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let stat of comparisonStats" class="stat-row">
+              <td class="stat-label">{{ stat.label }}</td>
+              <td 
+                class="stat-value" 
+                [class.better]="stat.player1Better"
+                [class.worse]="stat.player2Better && !stat.player1Better"
+              >
+                {{ stat.player1Value ?? 'N/A' }}
+              </td>
+              <td 
+                class="stat-value" 
+                [class.better]="stat.player2Better"
+                [class.worse]="stat.player1Better && !stat.player2Better"
+              >
+                {{ stat.player2Value ?? 'N/A' }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div class="empty-state" *ngIf="!player1 || !player2">
+      <i class="fas fa-users"></i>
+      <p>Select two players to compare their statistics</p>
+    </div>
+  </div>
+</div>
+
