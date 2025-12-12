@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { MatchesComponent } from './matches/matches.component';
 import { PlayerDetailComponent } from './player-detail/player-detail.component';
 import { PlayerComparisonComponent } from './player-comparison/player-comparison.component';
+import { MatchDetailComponent } from './match-detail/match-detail.component';
 
 export const routes: Routes = [
   {
@@ -25,5 +26,9 @@ export const routes: Routes = [
   {
     path: 'matches',
     component: MatchesComponent
+  },
+  {
+    path: 'matches/:id',
+    component: MatchDetailComponent
   }
 ];

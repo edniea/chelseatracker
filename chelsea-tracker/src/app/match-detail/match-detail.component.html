@@ -1,0 +1,159 @@
+<div class="match-detail-page">
+  <button class="back-button" (click)="goBack()">
+    <i class="fas fa-arrow-left"></i> Back to Matches
+  </button>
+
+  <div class="loading" *ngIf="loading">Loading match details...</div>
+  <div class="error" *ngIf="error">{{ error }}</div>
+
+  <div class="match-detail-container" *ngIf="!loading && !error && match">
+    <!-- Match Header -->
+    <div class="match-header">
+      <div class="competition-info">
+        <span class="competition-badge">{{ match.competition }}</span>
+        <span class="round" *ngIf="match.round">{{ match.round }}</span>
+      </div>
+      <div class="match-date">
+        <span class="day" *ngIf="match.day">{{ match.day }}</span>
+        <span class="date">{{ formatDate(match.date) }}</span>
+        <span class="time" *ngIf="match.time">{{ formatTime(match.time) }}</span>
+      </div>
+    </div>
+
+    <!-- Score Section -->
+    <div class="score-section">
+      <div class="team-info">
+        <div class="team-name" [class.chelsea]="getChelseaTeam() === 'Chelsea'">
+          {{ getChelseaTeam() }}
+        </div>
+        <div class="team-badge" *ngIf="match.venueType === 'Home'">
+          <span class="badge-text">HOME</span>
+        </div>
+      </div>
+
+      <div class="score-display">
+        <div class="score-value" *ngIf="isPlayed()">
+          <span class="chelsea-score">{{ getChelseaScore() }}</span>
+          <span class="score-separator">-</span>
+          <span class="opponent-score">{{ getOpponentScore() }}</span>
+        </div>
+        <div class="score-value scheduled" *ngIf="!isPlayed()">
+          <span class="vs-text">VS</span>
+        </div>
+        <div class="result-badge" [ngClass]="getResultClass()">
+          {{ getResultText() }}
+        </div>
+      </div>
+
+      <div class="team-info">
+        <div class="team-name">
+          {{ getOpponentTeam() }}
+        </div>
+        <div class="team-badge" *ngIf="match.venueType === 'Away'">
+          <span class="badge-text">AWAY</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Match Info Cards -->
+    <div class="info-cards">
+      <div class="info-card" *ngIf="match.venue">
+        <div class="info-label">
+          <i class="fas fa-map-marker-alt"></i> Venue
+        </div>
+        <div class="info-value">{{ match.venue }}</div>
+      </div>
+
+      <div class="info-card" *ngIf="match.referee">
+        <div class="info-label">
+          <i class="fas fa-whistle"></i> Referee
+        </div>
+        <div class="info-value">{{ match.referee }}</div>
+      </div>
+
+      <div class="info-card" *ngIf="match.attendance">
+        <div class="info-label">
+          <i class="fas fa-users"></i> Attendance
+        </div>
+        <div class="info-value">{{ match.attendance?.toLocaleString() }}</div>
+      </div>
+
+      <div class="info-card" *ngIf="match.captain">
+        <div class="info-label">
+          <i class="fas fa-star"></i> Captain
+        </div>
+        <div class="info-value">{{ match.captain }}</div>
+      </div>
+    </div>
+
+    <!-- Statistics Section -->
+    <div class="stats-section" *ngIf="isPlayed()">
+      <h2 class="section-title">Match Statistics</h2>
+      
+      <div class="stats-grid">
+        <!-- Possession -->
+        <div class="stat-card" *ngIf="match.possession !== undefined && match.possession !== null && getOppositionPossession() !== null">
+          <div class="stat-label">Possession</div>
+          <div class="possession-bar">
+            <div class="possession-segment chelsea" [style.width.%]="match.possession">
+              <span class="possession-value">{{ match.possession }}%</span>
+            </div>
+            <div class="possession-segment opponent" [style.width.%]="getOppositionPossession()!">
+              <span class="possession-value">{{ getOppositionPossession() }}%</span>
+            </div>
+          </div>
+          <div class="possession-labels">
+            <span>{{ getChelseaTeam() }}</span>
+            <span>{{ getOpponentTeam() }}</span>
+          </div>
+        </div>
+
+        <!-- Expected Goals -->
+        <div class="stat-card" *ngIf="match.xg !== undefined && match.xg !== null">
+          <div class="stat-label">Expected Goals (xG)</div>
+          <div class="stat-comparison">
+            <div class="stat-item">
+              <span class="stat-team">{{ getChelseaTeam() }}</span>
+              <span class="stat-number">{{ match.xg.toFixed(2) }}</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-team">{{ getOpponentTeam() }}</span>
+              <span class="stat-number">{{ match.xga?.toFixed(2) ?? 'N/A' }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formation -->
+        <div class="stat-card" *ngIf="match.formation">
+          <div class="stat-label">Formations</div>
+          <div class="formation-display">
+            <div class="formation-item">
+              <span class="formation-team">{{ getChelseaTeam() }}</span>
+              <span class="formation-value">{{ match.formation }}</span>
+            </div>
+            <div class="formation-item" *ngIf="match.oppositionFormation">
+              <span class="formation-team">{{ getOpponentTeam() }}</span>
+              <span class="formation-value">{{ match.oppositionFormation }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notes Section -->
+    <div class="notes-section" *ngIf="match.notes && match.notes.trim()">
+      <h2 class="section-title">Match Notes</h2>
+      <p class="notes-text">{{ match.notes }}</p>
+    </div>
+
+    <!-- Scheduled Match Info -->
+    <div class="scheduled-info" *ngIf="!isPlayed()">
+      <div class="scheduled-message">
+        <i class="fas fa-calendar-alt"></i>
+        <p>This match is scheduled for {{ formatDate(match.date) }}</p>
+        <p class="time-info" *ngIf="match.time">Kickoff: {{ formatTime(match.time) }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+

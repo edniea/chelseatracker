@@ -20,7 +20,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let match of matches" [class.played]="isPlayed(match)" [class.upcoming]="!isPlayed(match)">
+        <tr *ngFor="let match of matches" 
+            [routerLink]="['/matches', match.id]" 
+            class="clickable-row"
+            [class.played]="isPlayed(match)" 
+            [class.upcoming]="!isPlayed(match)">
           <td class="date-cell">
             <div class="date">{{ formatDate(match.date) }}</div>
             <div class="time" *ngIf="match.time">{{ match.time }}</div>

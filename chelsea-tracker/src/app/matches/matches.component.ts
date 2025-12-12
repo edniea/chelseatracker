@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 interface Match {
   id: number;
@@ -31,7 +32,7 @@ interface Match {
 @Component({
   selector: 'app-matches',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './matches.component.html',
   styleUrl: './matches.component.css'
 })
