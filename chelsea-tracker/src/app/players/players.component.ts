@@ -34,6 +34,9 @@ export class PlayersComponent implements OnInit {
   loading = true;
   error: string | null = null;
   searchQuery: string = '';
+  minGoals: number | null = null;
+  minAssists: number | null = null;
+  minMinutes: number | null = null;
 
   ngOnInit(): void {
     this.loadPlayers();
@@ -70,26 +73,79 @@ export class PlayersComponent implements OnInit {
   }
 
   filterPlayers(): void {
-    if (!this.searchQuery.trim()) {
+    const query = this.searchQuery.toLowerCase().trim();
+    const hasSearchQuery = query.length > 0;
+    const hasStatFilters = this.minGoals !== null || this.minAssists !== null || this.minMinutes !== null;
+
+    // If no filters applied, show all players
+    if (!hasSearchQuery && !hasStatFilters) {
       this.filteredPlayers = [...this.players];
       return;
     }
 
-    const query = this.searchQuery.toLowerCase().trim();
     this.filteredPlayers = this.players.filter(player => {
-      const name = player.name.toLowerCase();
-      const position = player.position?.toLowerCase() || '';
-      const nation = player.nation?.toLowerCase() || '';
+      // Text search filter
+      if (hasSearchQuery) {
+        const name = player.name.toLowerCase();
+        const position = player.position?.toLowerCase() || '';
+        const nation = player.nation?.toLowerCase() || '';
 
-      return name.includes(query) ||
-             position.includes(query) ||
-             nation.includes(query);
+        const matchesSearch = name.includes(query) ||
+                              position.includes(query) ||
+                              nation.includes(query);
+        
+        if (!matchesSearch) return false;
+      }
+
+      // Stat filters
+      const goals = player.stats?.goals ?? 0;
+      const assists = player.stats?.assists ?? 0;
+      const minutes = player.stats?.minutes ?? 0;
+
+      if (this.minGoals !== null && goals < this.minGoals) return false;
+      if (this.minAssists !== null && assists < this.minAssists) return false;
+      if (this.minMinutes !== null && minutes < this.minMinutes) return false;
+
+      return true;
     });
+  }
+
+  onGoalsFilterChange(value: string): void {
+    this.minGoals = value === '' ? null : parseInt(value, 10);
+    if (isNaN(this.minGoals!)) this.minGoals = null;
+    this.filterPlayers();
+  }
+
+  onAssistsFilterChange(value: string): void {
+    this.minAssists = value === '' ? null : parseInt(value, 10);
+    if (isNaN(this.minAssists!)) this.minAssists = null;
+    this.filterPlayers();
+  }
+
+  onMinutesFilterChange(value: string): void {
+    this.minMinutes = value === '' ? null : parseInt(value, 10);
+    if (isNaN(this.minMinutes!)) this.minMinutes = null;
+    this.filterPlayers();
   }
 
   clearSearch(): void {
     this.searchQuery = '';
     this.filterPlayers();
+  }
+
+  clearFilters(): void {
+    this.searchQuery = '';
+    this.minGoals = null;
+    this.minAssists = null;
+    this.minMinutes = null;
+    this.filterPlayers();
+  }
+
+  hasActiveFilters(): boolean {
+    return !!this.searchQuery || 
+           this.minGoals !== null || 
+           this.minAssists !== null || 
+           this.minMinutes !== null;
   }
 }
 

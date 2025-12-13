@@ -23,8 +23,8 @@
   font-size: 14px;
 }
 
-/* Search Styles */
-.search-container {
+/* Filters Styles */
+.filters-container {
   margin-bottom: 24px;
 }
 
@@ -37,6 +37,7 @@
   border-radius: 8px;
   padding: 0 12px;
   transition: border-color 0.2s, box-shadow 0.2s;
+  margin-bottom: 16px;
 }
 
 .search-box:focus-within {
@@ -83,11 +84,81 @@
   background: #f1f5f9;
 }
 
+.stat-filters {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 16px;
+  background: #fff;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 120px;
+}
+
+.filter-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.filter-input {
+  padding: 10px 12px;
+  border: 2px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #0f172a;
+  background: #fff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.filter-input:focus {
+  outline: none;
+  border-color: #1e3a8a;
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+}
+
+.filter-input::placeholder {
+  color: #94a3b8;
+}
+
+.clear-all-button {
+  padding: 10px 16px;
+  background: #f1f5f9;
+  border: 2px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  align-self: flex-end;
+}
+
+.clear-all-button:hover {
+  background: #e2e8f0;
+  border-color: #cbd5e1;
+  color: #1e3a8a;
+}
+
 .search-results-info {
-  margin-top: 8px;
+  margin-top: 12px;
   font-size: 14px;
   color: #64748b;
   padding-left: 4px;
+  font-weight: 500;
 }
 
 .loading,
@@ -191,6 +262,20 @@
 @media (max-width: 768px) {
   .players-page {
     padding: 16px;
+  }
+
+  .stat-filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-group {
+    min-width: 100%;
+  }
+
+  .clear-all-button {
+    align-self: stretch;
+    margin-top: 8px;
   }
 
   .players-table {

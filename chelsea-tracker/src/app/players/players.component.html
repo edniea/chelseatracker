@@ -7,7 +7,7 @@
   <div class="loading" *ngIf="loading">Loading players...</div>
   <div class="error" *ngIf="error">{{ error }}</div>
 
-  <div class="search-container" *ngIf="!loading && !error">
+  <div class="filters-container" *ngIf="!loading && !error">
     <div class="search-box">
       <span class="search-icon">🔍</span>
       <input
@@ -27,7 +27,58 @@
         ✕
       </button>
     </div>
-    <div class="search-results-info" *ngIf="searchQuery">
+
+    <div class="stat-filters">
+      <div class="filter-group">
+        <label for="goals-filter" class="filter-label">Min Goals</label>
+        <input
+          id="goals-filter"
+          type="number"
+          class="filter-input"
+          placeholder="0"
+          min="0"
+          [value]="minGoals ?? ''"
+          (input)="onGoalsFilterChange($any($event.target).value)"
+        />
+      </div>
+
+      <div class="filter-group">
+        <label for="assists-filter" class="filter-label">Min Assists</label>
+        <input
+          id="assists-filter"
+          type="number"
+          class="filter-input"
+          placeholder="0"
+          min="0"
+          [value]="minAssists ?? ''"
+          (input)="onAssistsFilterChange($any($event.target).value)"
+        />
+      </div>
+
+      <div class="filter-group">
+        <label for="minutes-filter" class="filter-label">Min Minutes</label>
+        <input
+          id="minutes-filter"
+          type="number"
+          class="filter-input"
+          placeholder="0"
+          min="0"
+          [value]="minMinutes ?? ''"
+          (input)="onMinutesFilterChange($any($event.target).value)"
+        />
+      </div>
+
+      <button
+        class="clear-all-button"
+        *ngIf="hasActiveFilters()"
+        (click)="clearFilters()"
+        type="button"
+      >
+        Clear All Filters
+      </button>
+    </div>
+
+    <div class="search-results-info" *ngIf="hasActiveFilters()">
       <span>{{ filteredPlayers.length }} player{{ filteredPlayers.length !== 1 ? 's' : '' }} found</span>
     </div>
   </div>
